@@ -1,37 +1,30 @@
 <template>
   <div>
+    <h2>Form inputs</h2>
+
+    <app-onoff v-model="switched"></app-onoff>
+
     <div>
-      <h2>{{ title }}</h2>
-
-      <input type="text" v-model="searchName">
-
-      <ul>
-        <li v-for="(name, index) of filteredNames" :key="index">
-          {{ name }}
-        </li>
-      </ul>
-
-      <hr>
-
-      <app-list></app-list>
+      <h3 v-if="switched">Component is enabled</h3>
+      <h3 v-else>Component is disabled</h3>
     </div>
   </div>
 </template>
 
 <script>
-import ListMixin from './listMixin'
+import Onoff from './Onoff.vue'
 
 export default {
   data () {
     return {
-      title: 'Hello'
+      switched: false
     }
   },
-  filters: {
-    lowercase (value) {
-      return value.toLowerCase()
-    }
-  },
-  mixins: [ListMixin]
+  components: {
+    appOnoff: Onoff
+  }
 }
 </script>
+
+<style scoped>
+</style>
