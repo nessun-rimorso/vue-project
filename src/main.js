@@ -1,10 +1,16 @@
 import Vue from 'vue'
 import App from './App.vue'
-import ColorDirective from './color'
+import List from './List'
+
+Vue.filter('uppercase', value => value.toUpperCase())
+Vue.component('app-list', List)
+Vue.mixin({
+  beforeCreate () {
+    console.log('beforeCreate')
+  }
+})
 
 Vue.config.productionTip = false
-
-Vue.directive('colored', ColorDirective)
 
 new Vue({
   render: h => h(App)

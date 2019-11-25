@@ -1,27 +1,37 @@
 <template>
   <div>
     <div>
-      <h2 v-colored:background.font="'red'">{{ title }}</h2>
-      <h2 v-colored:color.delay="'blue'">{{ title }}</h2>
+      <h2>{{ title }}</h2>
 
-      <h2 v-font>Local font directive</h2>
+      <input type="text" v-model="searchName">
+
+      <ul>
+        <li v-for="(name, index) of filteredNames" :key="index">
+          {{ name }}
+        </li>
+      </ul>
+
+      <hr>
+
+      <app-list></app-list>
     </div>
   </div>
 </template>
 
 <script>
+import ListMixin from './listMixin'
+
 export default {
   data () {
     return {
       title: 'Hello'
     }
   },
-  directives: {
-    font: {
-      bind (el, bindings, vnode) {
-        el.style.fontSize = '40px'
-      }
+  filters: {
+    lowercase (value) {
+      return value.toLowerCase()
     }
-  }
+  },
+  mixins: [ListMixin]
 }
 </script>
