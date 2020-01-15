@@ -1,14 +1,10 @@
 import Vue from 'vue'
-import VueResourse from 'vue-resource'
 import App from './App.vue'
+import store from './store'
 
 Vue.config.productionTip = false
-Vue.use(VueResourse)
-Vue.http.options.root = 'http://localhost:3000/'
-Vue.http.interceptors.push(request => {
-  request.headers.set('Auth', 'RAND TOKEN ' + Math.random())
-})
 
 new Vue({
+  store,
   render: h => h(App)
 }).$mount('#app')
